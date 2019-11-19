@@ -1,0 +1,43 @@
+Create 3 new users
+
+User.objects.create(first_name="ooha",last_name="S",email="ooha@gmail.com",age=16)
+
+User.objects.create(first_name="Nick",last_name="A",email="user2@.com",age=10)
+
+User.objects.create(first_name="David",last_name="B",email="user3@.com",age=21)
+
+----------------------------------------------------------------
+Retrieve all the users
+
+User.objects.all().values()
+----------------------------------------------------------------
+Query: Retrieve the first user
+
+User.objects.first()
+----------------------------------------------------------------
+Query: Retrieve the last user
+
+User.objects.last()
+----------------------------------------------------------------
+Query: Change the user with id=3 so their last name is Pancakes.
+
+a = User.objects.get(id="3")
+a.last_name = "Pancakes"
+a.save()
+----------------------------------------------------------------
+Query: Delete the user with id=2 from the database
+
+a = User.objects.get(id="2")
+a.delete()
+----------------------------------------------------------------
+Query: Get all the users, sorted by their first name
+
+User.objects.all().order_by('first_name')
+----------------------------------------------------------------
+BONUS Query: Get all the users, sorted by their first name in descending order
+
+User.objects.all().order_by('-first_name')
+
+
+
+ 

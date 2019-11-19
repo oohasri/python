@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<a href="/shows">Go back</a>
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<h3>Tv Show {{show.id}}</h3>
+				<p>Title: {{show.title}}</p>
+				<p>Network: {{show.network}}</p>
+				<p>Release Date: {{show.release_date}}</p>
+				<p>Description: {{show.description}}</p>
+				<a href="/shows/{{show.id}}/edit">Edit</a> | <a href="/shows/{{show.id}}/delete">Delete</a>
+			</div>
+		</div>
+		<a href=""></a>	
+	</div>
+</body>
+</html>

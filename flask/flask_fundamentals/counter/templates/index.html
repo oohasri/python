@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Count the sessions</title>
+	<meta name="description" content="count">
+	<style type="text/css">
+		div{
+			text-align: center;
+		}
+		a {
+			background-color: red;
+			color: white;
+			padding: 1em 1.5em;
+			text-decoration: none;
+			text-transform: uppercase;
+			border-radius: 10px;
+		}
+		form{
+			margin-top: 40px;
+		}
+		label{
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h1>Count</h1>
+		<h3>{{session['count']}} times</h3>
+		<a href="/add2">Add by 2</a>
+		<a href="/destroy_session">Reset</a>
+		<form action="/count_increment" method="POST">
+			<h3><label>Please specify the increment of the counter </label></h3>
+			<input type="text" name="count">
+			<input type="submit" name="Submit">
+		</form>
+		<label>Page visited {{session['page_visited']}}</label>
+		<label>Counter value is {{session['count']}}</label>
+	</div>
+</div>
+</body>
+</html>

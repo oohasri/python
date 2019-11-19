@@ -1,0 +1,62 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Checker Board</title>
+	<!-- based on the folder structure on the right -->
+	 <style type="text/css">
+	 	.color1{
+			background-color:red;
+			{% if color_one!=None: %}
+				background-color:{{color_one}};
+			{% endif %}
+			height: 30px;
+			width: 30px;
+		}
+		.color2{
+			background-color: black;
+			{% if color_two!=None %}
+				background-color:{{color_two}};
+			{% endif %}
+			height: 30px;
+			width: 30px;
+		}
+	 </style>
+</head>
+<body>
+	<table>
+	{% if rows!=Undefined %}
+		{% for i in range(0,rows): %}
+		<tr>
+			{% if num_times==Undefined: %}
+				{% for j in range(0,8): %}	
+					<td class="color{{ (i+j)%2+1 }}"></td>
+				{% endfor %}	
+			{% endif %}
+			{% if num_times!=Undefined: %}
+				{% for j in range(0,num_times): %}	
+					<td class="color{{ (i+j)%2+1 }}"></td>
+				{% endfor %}	
+			{% endif %}
+		</tr>
+		{% endfor %}
+	{% endif %}
+	{% if rows==Undefined %}
+		{% for i in range(0,8): %}
+		<tr>
+			{% if num_times==Undefined: %}
+				{% for j in range(0,8): %}	
+					<td class="color{{ (i+j)%2+1 }}"></td>
+				{% endfor %}	
+			{% endif %}
+			{% if num_times!=Undefined: %}
+				{% for j in range(0,num_times): %}	
+					<td class="color{{ (i+j)%2+1 }}"></td>
+				{% endfor %}	
+			{% endif %}
+		</tr>
+		{% endfor %}
+	{% endif %}
+	</table>
+
+</body>
+</html>

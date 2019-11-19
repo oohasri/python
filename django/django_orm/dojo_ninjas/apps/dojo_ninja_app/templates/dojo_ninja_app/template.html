@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load static %}
+    <link rel="stylesheet" href="{% static 'dojo_ninja_app/css/styles.css' %}">   
+</head>
+<body>
+	<div class="container">
+		<form action="/addbook" method="POST">
+			{% csrf_token %}
+			<h2>Add a Book</h2>
+			<table>
+				<tr>
+					<td><label>Title</label></td>
+					<td><input type="text" name="title"></td>
+				</tr>
+				<tr>
+					<td><label>Description</label></td>
+					<td><textarea name="description"></textarea></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Add"></td>
+				</tr>
+			</table>
+		</form>
+		<table class="display">
+			<th>Id</th>
+			<th>Title</th>
+			<th>Action</th>
+			{% for book in books %}
+				<tr>
+					<td>{{ book.id }}</td>
+					<td>{{ book.title }}</td>
+					<td><a href="/book/{{book.id}}" value={{book.id}}>View</a></td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+</body>
+</html>

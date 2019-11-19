@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Display Book</title>
+	<meta name="description" content="Add a book">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'book/css/styles.css' %}">
+</head>
+<body>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8"></div>
+				<div class="col-sm-2"><a href="/wall">Home</a></div>
+				<div class="col-sm-2"><a href="/logout">Logout</a></div>
+			</div>
+			{% for book in this_book %}
+				<h4>{{book.title}}</h4>
+				<p>Author : {{book.author.author_name}}</p>
+				<h5>Reviews</h5>
+				{% for review in this_review %}
+					{% if review.book.id == book.id %}
+						<div class="reviews">
+							<h6>Rating : {{review.rating}} </h6>
+							<p>{{review.user.first_name}} says {{review.review}}</p>
+						</div>
+					{% endif %}
+				{% endfor %}
+			
+
+				<form class="form-horizontal" action="/submit_review" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="book_id" value="{{book.id}}">
+					<div class="form-group"> 
+						<label class="control-label col-sm-4" for="review">Post Review</label>
+						<div class="col-sm-12"> 
+							<textarea class="form-control" name="review" required></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="rating" required>Rating (Star rating)</label>
+						<div class="col-sm-12">		
+							<select name="rating">
+								<option value="" selected disabled hidden>Choose here</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-12">
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</div>
+				</form>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Login and Registration</title>
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'book/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				{% if messages %}
+				<ul class="messages">    
+					{% for message in messages %}    
+					<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+					{% endfor %}
+				</ul>
+				{% endif %}
+				<form class="form-horizontal" name="registration" action="/register"  method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="registration" value="#">
+					<div class="form-group">
+						<label class="control-label col-sm-12"><h3>Registration</h3></label>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="first_name">First Name</label>
+						<div class="col-sm-12">
+							<input type="text" class="form-control" name="first_name" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="alias">Alias</label>
+						<div class="col-sm-12"> 
+							<input type="text" class="form-control" name="alias" required>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<label class="control-label col-sm-4" for="email">Email</label>
+						<div class="col-sm-12"> 
+							<input type="email" class="form-control" name="email" required>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<label class="control-label col-sm-4" for="password">Password</label>
+						<div class="col-sm-12"> 
+							<input type="text" class="form-control" name="password" required>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<label class="control-label col-sm-6" for="confirm_password">Confirm Password</label>
+						<div class="col-sm-12"> 
+							<input type="text" class="form-control" name="confirm_password" required>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-12">
+							<button type="submit" class="btn btn-primary">Register</button>
+						</div>
+					</div>
+				</form>
+
+				<form class="form-horizontal" action="/login" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="login" value="#">
+					<div class="form-group">
+						<label class="control-label col-sm-12"><h3>Login</h3></label>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="email">Email</label>
+						<div class="col-sm-12">
+							<input type="email" class="form-control" name="email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="password">Password</label>
+						<div class="col-sm-12"> 
+							<input type="password" class="form-control" name="password">
+						</div>
+					</div>
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-12">
+							<button type="submit" class="btn btn-primary">Login</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

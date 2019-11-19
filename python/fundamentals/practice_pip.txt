@@ -1,0 +1,41 @@
+pip list
+
+PIP is a package manager for Python packages, or modules if you like. It lists all packages installed
+----------------------------------------------------------------------------------------------------
+deactivate
+
+Deactivates virtual environment
+-----------------------------------------------------------------------------------------------------
+pip3 list
+
+It comes with Python installation package and lists globally installed packages. pip list lists installed packages in virtual environment.
+-----------------------------------------------------------------------------------------------------
+source myEnvironments/py3Env/bin/activate (Adjust the path as needed to re-activate the virtualenv; for windows call myEnvironments/py3Env/Scripts/activate)
+
+After adding virtual environment, it needs to be activated to work on projects in specific virtual environment. source path(Mac) and call path(Windows) used to activate it.
+------------------------------------------------------------------------------------------------------
+pip install Django==1.11.9 (We know you already ran this one. What information do you see returned in terminal after this command?)
+
+Successfully installed Django
+------------------------------------------------------------------------------------------------------
+pip freeze
+
+The main difference is that the output of pip freeze can be dumped into a requirements.txt file and used later to re-construct the "frozen" environment.
+pip list Lists installed packages, including editables.
+pip freeze gives Output installed packages in requirements format.
+------------------------------------------------------------------------------------------------------
+First cd into your Desktop directory (cd ~/Desktop), then run this command: pip freeze > requirements.txt. What do you see when you ls? What's inside this file?
+
+New txt file(requirements.txt) is created and it's empty.
+------------------------------------------------------------------------------------------------------
+pip uninstall Django
+
+Uninstall Django
+------------------------------------------------------------------------------------------------------
+pip show Django
+
+Doesn't show Django because it's uninstalled
+------------------------------------------------------------------------------------------------------
+pip search Flask
+
+It lists all the installed Flask libraries

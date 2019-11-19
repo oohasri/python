@@ -1,0 +1,86 @@
+Query: Create 3 new dojos
+
+dojo.objects.create(name="Coding Dojo", city="San Jose", state="CA")
+
+dojo.objects.create(name="Coding Dojo2", city="Berkeley", state="CA")
+
+dojo.objects.create(name="Coding Dojo3", city="Newyork", state="NY")
+---------------------------------------------------------------
+Query: Delete the 3 dojos you just created
+
+a = dojo.objects.get(id=1)
+a.delete()
+
+a = dojo.objects.get(id=2)
+a.delete()
+ 
+a = dojo.objects.get(id=3)
+a.delete()
+-----------------------------------------------------------
+Query: Create 3 more dojos
+
+dojo.objects.create(name="Coding Dojo", city="San Jose", state="CA")
+
+dojo.objects.create(name="Coding Dojo2", city="Berkeley", state="CA")
+
+dojo.objects.create(name="Coding Dojo3", city="Newyork", state="NY")
+-----------------------------------------------------------
+Query: Create 3 ninjas that belong to the first dojo
+
+this_dojo = dojo.objects.get(id=4)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Ooha", last_name="S")
+
+this_dojo = dojo.objects.get(id=4)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "David", last_name="B")
+
+this_dojo = dojo.objects.get(id=4)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Lyn", last_name="T")
+------------------------------------------------------------
+Query: Create 3 ninjas that belong to the second dojo
+
+this_dojo = dojo.objects.get(id=5)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Aariv", last_name="C")
+
+this_dojo = dojo.objects.get(id=5)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Aria", last_name="U")
+
+this_dojo = dojo.objects.get(id=5)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Aarna", last_name="T")
+------------------------------------------------------------
+ Query: Create 3 ninjas that belong to the third dojo
+
+this_dojo = dojo.objects.get(id=6)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Amelia", last_name="A")
+
+this_dojo = dojo.objects.get(id=6)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Wynn", last_name="E")
+
+this_dojo = dojo.objects.get(id=6)
+this_ninja = ninjas.objects.create(dojo_id = this_dojo, first_name = "Rebecca", last_name="I")
+-----------------------------------------------
+Query: Retrieve all the ninjas from the first dojo
+
+a = dojo.objects.get(id=4)
+a.ninjas.all().values()
+--------------------------------------------------------------
+Query: Retrieve all the ninjas from the last dojo
+
+a = dojo.objects.last()
+a.ninjas.all().values()
+---------------------------------------------------------------
+Query: Retrieve the last ninja's dojo
+
+a = ninjas.objects.last()
+a.dojo_id.__dict__
+---------------------------------------------------------------
+Add a new text field called "desc" to your Dojo class
+
+class dojo(models.Model):
+	name = models.CharField(max_length = 255)
+	city = models.CharField(max_length = 255)
+	state = models.CharField(max_length = 2)
+	desc = models.TextField(default="")
+--------------------------------------------------------------
+Query: Create a new dojo
+
+dojo.objects.create(name="Coding Dojo4", city="Austin", state="TX")

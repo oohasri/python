@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'dojo_ninja_app/css/styles.css' %}"> 
+</head>
+<body>
+	<div class="container">
+		<form action="/addauthor" method="POST">
+			{% csrf_token %}
+			<h2>Add an Author</h2>
+			<table>
+				<tr>
+					<td><label>First Name</label></td>
+					<td><input type="text" name="first_name"></td>
+				</tr>
+				<tr>
+					<td><label>Last Name</label></td>
+					<td><input type="text" name="last_name"></td>
+				</tr>
+				<tr>
+					<td><label>Notes</label></td>
+					<td><textarea name="notes"></textarea></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Add"></td>
+				</tr>
+			</table>
+		</form>
+		<table>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Action</th>
+			{% for author in authors %}
+			<tr>
+				<td>{{ author.id }}</td>
+				<td>{{ author.first_name }} {{ author.last_name }}</td>
+				<td><a href="/author/{{author.id}}" value={{author.id}}>View</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</body>
+</html>	

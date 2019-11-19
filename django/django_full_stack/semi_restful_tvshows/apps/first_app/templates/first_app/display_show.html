@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'first_app/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Title</th>
+					<th scope="col">Network</th>
+					<th scope="col">Release_Date</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for show in show %}
+					<tr>
+						<th scope="row">{{show.id}}</th>
+						<td>{{show.title}}</td>
+						<td>{{show.network}}</td>
+						<td>{{show.release_date}}</td>
+						<td><a href="shows/{{show.id}}">Show</a> | <a href="/shows/{{show.id}}/edit">Edit</a> | <a href="shows/{{show.id}}/delete">Delete</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="/shows/new">Add a new show</a>
+	</div>
+</body>
+</html>

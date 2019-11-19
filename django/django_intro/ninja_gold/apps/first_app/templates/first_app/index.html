@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ninja Gold Game</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	{% load static %}
+     <link rel="stylesheet" href="{% static 'first_app/css/styles.css' %}"> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h3>Number of Golds: {{request.session.count_gold}} </h3>
+		<h3>Moves: {{request.session.moves}} </h3>
+		<h3 class="result">{{request.session.message}}</h3>
+		<h3>You win! if you earn 500 golds in 15 moves..</h3>
+		<div>
+			<form action="/process_money" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="property" value="farm">
+				<label>Farm</label>
+				<p>Earns 10 golds</p>
+				<input type="submit" class="btn btn-success" value="10 Golds">
+			</form>
+			<form action="/process_money" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="property" value="cave">
+				<label>Cave</label>
+				<p>Earns 15 golds</p>
+				<input type="submit" class="btn btn-success" value="15 golds">
+			</form>
+			<form action="/process_money" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="property" value="house">
+				<label>House</label>
+				<p>Earns 20 golds</p>
+				<input type="submit" class="btn btn-success" value="20 Golds">
+			</form>
+			<form action="/process_money" method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="property" value="casino">
+				<label>Casino</label>
+				<p>Earns/takes 50 golds</p>
+				<input type="Submit" class="btn btn-success" value="50 Golds">
+			</form>
+			<h3>History:</h3>
+			<div id="history">{{request.session.history | safe}}</div>
+			<h3><a class="btn btn-success" href="/reset">Play New Game!</a></h3>
+		</div>
+	</div>
+</body>
+</html>

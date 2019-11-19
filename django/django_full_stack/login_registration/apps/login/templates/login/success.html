@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Successful Login</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<a href="/logout">Logout</a>
+				<h2>Welcome {{request.session.first_name}}</h2>
+				<h3>Successfully Loggedin or registered</h3>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

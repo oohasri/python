@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Random Number</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'first_app/css/styles.css' %}">    
+</head>
+<body>
+	<div class="container">		
+		<h3>Attempts: {{ request.session.count }}</h3>
+		<div class="display"><h1>{{ string }}</h1></div>
+		<form action="/display" method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Generate">
+		</form>
+		<form action="/destroy" method="POST">
+			{% csrf_token %}
+			<input type="submit" value="Reset">
+		</form>
+	</div>
+</body>
+</html>

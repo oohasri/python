@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'dojo_ninja_app/css/styles.css' %}"> 
+</head>
+<body>
+	<div class="container">
+		Author display
+		<h1>{{author.first_name}}{{author.last_name}}</h1>
+		<p>ID : {{author.id}}</p>
+		<p>Notes: {{author.notes}}</p>
+		<p>Books: {% for book in books %} {{book.title}},{% endfor %}</p>
+		<form action="/addbook_to_author" method="POST">
+			{% csrf_token %}
+			<input type="hidden" name="property" value="{{author.id}}">
+			<select name="select_books">
+				{% for book in all_books %}
+				<option value="{{book.id}}">{{book.title}}</option>
+				{% endfor %}	
+			</select>
+			<input type="submit" value="Add">
+		</form>
+	</div>
+</body>
+</html>

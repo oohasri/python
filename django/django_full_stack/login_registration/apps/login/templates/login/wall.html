@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Successful Login</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm green">Welcome {{request.session.first_name}}! Successfully Loggedin/registered</div>
+					<div class="col-sm"><a href="/logout">Logout</a></div>
+				</div>	
+				<form class="form-horizontal post_form" action="/submit_post" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="property" value="post">
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="post_a_message">Post a message</label>
+						<div class="col-sm-12">
+							<textarea class="form-control" name="content"></textarea>
+						</div>
+					</div>
+					<div class="form-group"> 
+						<div class="col-sm-offset-2 col-sm-12">
+							<button type="submit" class="btn btn-primary">Post</button>
+						</div>
+					</div>
+				</form>
+				<div class="display_posts">
+					{% for message in messages %}
+						<form action="/delete_message" method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="message" value="{{message.id}}">
+							<h6 class="inline">Message by {{message.user.first_name}}</h6>
+							{% if request.session.userid == message.user.id %}
+								{% if message.created_at >= time_check %}
+									<input type="submit" class="btn btn-outline-danger btn-sm inline" name="Submit" value="Delete">
+								{% endif %}
+							{% endif %}
+							<p>{{message.message}}</p>							
+						</form>						
+						{% for comment in comments %}
+							<div class="display_comment">
+							{% if comment.message_id.id == message.id %}
+								<h6>{{comment.user_id.first_name}}  {{comment.created_at}}</h6>
+								<p>{{comment.comment}}</p>
+							{% endif %}
+							</div>
+						{% endfor %}
+						
+						<form class="form-horizontal post_form" action="/comment" method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="message_id" value="{{message.id}}">	
+							<div class="form-group">
+								<label class="control-label col-sm-6" for="password">Post a comment
+								</label>
+								<div class="col-sm-12"> 
+									<textarea class="form-control" name="post"></textarea>
+								</div>
+							</div>
+							<div class="form-group"> 
+								<div class="col-sm-offset-2 col-sm-12">
+									<button type="submit" class="btn btn-primary">Post</button>
+								</div>
+							</div>
+						</form>
+					{% endfor %}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

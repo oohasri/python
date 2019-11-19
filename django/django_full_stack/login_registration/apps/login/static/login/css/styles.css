@@ -1,0 +1,42 @@
+body{
+	padding: 0px;
+	margin: 0px auto;
+}
+form{
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+/*.form-horizontal{
+	width: 49%;
+}*/
+a{
+	padding-left: 400px;
+}
+.green{
+	color: green;
+}
+ul{
+	list-style: none;
+	color: red;
+}
+.post_form{
+	margin-top: 10px;
+	display: block;
+	width: 95%;
+}
+.display_posts{
+	padding-left: 40px;
+}
+.display_comment{
+	background-color: #73585840;
+	border-radius: 5px;
+	width: 90%;
+	padding-left: 10px;
+}
+.btn-primary {
+	margin-bottom: 20px;
+}
+.inline{
+	display: inline-block;
+}

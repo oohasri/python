@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Successful Login</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Page login and registration">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'book/css/styles.css' %}">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+			<div class="container">
+				<div class="row">				
+					<div class="col-sm-6 green">Welcome {{request.session.first_name}}!</div>
+					<div class="col-sm-4"><a href="/addbook">Add Book and Review</a></div>
+					<div class="col-sm-2"><a href="/logout">Logout</a></div>
+				</div>	
+				<div class="row">
+					<div class="display_posts col-7">				
+						{% for book in books %}
+							{% for review in reviews %}
+								{% if review.book.id == book.id %}
+									<div class="display_comment reviews">
+										<a href="/book/{{book.id}}">{{book.title}}</a>
+										<p>{% with ''|center:review.rating as range %}{% for _ in range %} * {% endfor %}{% endwith %}</p>
+										<p>{{review.review}}</p>
+									</div>
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
+					</div>
+
+					<div class="display_other_posts col">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

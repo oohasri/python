@@ -1,0 +1,15 @@
+body{
+	margin: 0px auto;
+	padding: 0px;
+}
+.container{
+	margin: 20px auto;
+	padding: 20px;
+}
+form{
+	display: inline-block;
+	width: 40%;
+}
+table{
+	display: inline-block;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Great Number Game</title>
+	<meta name="description" content="Great number game">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style type="text/css">
+		div{
+			text-align: center;
+			margin-top: 40px;
+		}
+		h4{
+			color: red;
+		}
+		.attempts{
+			display: none;
+			margin-top: 0px;
+			margin-bottom: 20px;
+		}
+		.low,.high,.green{
+			display: none;
+			background-color: #de6e6e;
+			margin-top: 0px;
+			margin-bottom: 30px;
+			width: 200px;
+			height: 100px;
+			border-radius: 10px;
+		}
+		.green{
+			background-color: #52842c;
+		}
+		h3, h2{
+			color: #fff;
+		}
+		a{
+			color: #fff;
+			background-color: #2c4884;
+			padding: 1em 1.5em;
+			text-decoration: none;
+			text-transform: uppercase;
+			border-radius: 10px;
+		}
+		form{
+			margin-bottom: 40px;
+		}
+		#display_form{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h3>Welcome to Great Number Game!</h3>
+		<p>I am thinking about a number between 1 and 100</p>
+		<p>Take a guess!</p>
+		<div class="attempts"><h4>Number of attempts:  {{count}}</h4></div>
+		<div class="result"><h4>{{message}}</h4></div>
+		<div class="high">
+			<h3>Too high!</h3>
+			<h2>{{user_num}}</h2>
+		</div>
+		<div class="low">
+			<h3>Too Low!</h3>
+			<h2>{{user_num}}</h2>
+		</div>
+		<div class="green">
+			<h3>Yay!</h3>
+			<h2>{{user_num}}</h2>
+		</div>
+		<form action="/guess_num" method="POST">
+			<input type="text" name="num">
+			<input type="submit" name="Submit">
+		</form>
+		<a href="/reset">Play new game!</a>
+		<a id="display_form" href="/user_details">Please Submit your details!</a>
+	</div>
+	<script type="text/javascript">
+		if({{generated_num}} == {{user_num}}){
+			console.log("Yay");
+			document.getElementsByClassName('green')[0].style.display="inline-block";
+			document.getElementById('display_form').style.display="inline-block";
+		}
+		else if({{generated_num}} > {{user_num}}){
+			console.log("low");
+			document.getElementsByClassName('low')[0].style.display="inline-block";
+		}
+		else if({{generated_num}} < {{user_num}}){
+			console.log("high");
+			document.getElementsByClassName('high')[0].style.display="inline-block";
+		}
+		if({{count}}!= 0){
+			console.log("Number of attempts: {{count}}");
+			document.getElementsByClassName('attempts')[0].style.display="block";
+		}
+			// if({{message}}!= None""){
+			// 	document.getElementsByClassName('result')[0].style.display="block"
+			// }
+		</script>
+	</body>
+	</html>

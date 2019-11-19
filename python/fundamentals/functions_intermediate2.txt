@@ -1,0 +1,72 @@
+Update Values in Dictionaries and Lists
+
+x = [ [5,2,3], [10,8,9] ] 
+for i in range(0,len(x),1):
+    for j in range(0,len(x[i]),1):
+        if x[i][j]==10:
+            x[i][j]=15
+print(x)
+students = [
+     {'first_name':  'Michael', 'last_name' : 'Jordan'},
+     {'first_name' : 'John', 'last_name' : 'Rosales'}
+]
+students[0]['last_name']="Bryant"
+print(students)
+sports_directory = {
+    'basketball' : ['Kobe', 'Jordan', 'James', 'Curry'],
+    'soccer' : ['Messi', 'Ronaldo', 'Rooney']
+}
+for key,value in sports_directory.items():
+    print(key)
+    for val in range(len(value)):
+        if value[val]=='Messi':
+            value[val]="Andres"
+print(sports_directory)
+z = [ {'x': 10, 'y': 20} ]
+for x in range(len(z)):
+    for key,value in z[x].items():
+        if value==20:
+            z[x][key]=30
+print(z)
+-------------------------------------------------------------------------------------------------------------
+Iterate Through a List of Dictionaries
+
+students = [
+     {'first_name':  'Michael', 'last_name' : 'Jordan'},
+     {'first_name' : 'John', 'last_name' : 'Rosales'},
+     {'first_name' : 'Mark', 'last_name' : 'Guillen'},
+     {'first_name' : 'KB', 'last_name' : 'Tonel'}
+]
+def iterateDictionary(students):
+    for x in range(len(students)):
+        print(students[x])
+        for key,value in students[x].items():
+            print(key,value)
+iterateDictionary(students)
+------------------------------------------------------------------------------------------------------------------
+Get Values From a List of Dictionaries
+
+students = [
+     {'first_name':  'Michael', 'last_name' : 'Jordan'},
+     {'first_name' : 'John', 'last_name' : 'Rosales'},
+     {'first_name' : 'Mark', 'last_name' : 'Guillen'},
+     {'first_name' : 'KB', 'last_name' : 'Tonel'}
+]
+def iterateDictionary2(key_name, key_name2, some_list):
+    for x in range(len(students)):
+        print(students[x][key_name])
+        print(students[x][key_name2])
+iterateDictionary2('first_name','last_name', students)
+--------------------------------------------------------------------------------------------------------------------
+Iterate Through a Dictionary with List Values
+
+dojo = {
+   'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+   'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+def printInfo(some_dict):
+    for key,value in some_dict.items():
+        print(key)
+        for val in range(len(value)):
+            print(value[val])
+printInfo(dojo)
